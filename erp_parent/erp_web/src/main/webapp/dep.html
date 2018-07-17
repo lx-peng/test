@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div id="editWindow" class="easyui-window" title="部门编辑"
+style="width:300px;height:200px" data-options="closed:true">
+<form id="editForm">
+<table>
+	<tr>
+		<td>名称</td><td><input name="dep.name"></td>
+	</tr>
+	<tr>
+		<td>电话</td><td><input name="dep.tele"></td>
+	</tr>
+</table>
+<button type="button" id="btnSave">保存</button>
+</form>
+</div>
+<form id="searchForm">
+部门名称：<input name="dep1.name">
+部门电话：<input name="dep1.tele">
+<button id="btnSearch" type="button">查询</button>
+</form>
+<table id="grid"></table>
+</body>
+<script type="text/javascript">
+$(function(){
+	$("#grid").datagrid({
+		url:'dep_listByPage.action',
+		columns:[[
+			{field:'uuid',title:"部门编号",width:100},  
+			{field:'name',title:"部门名称",width:100},
+			{field:'tele',title:"部门电话",width:100},
+		]],
+		singleSelect:true,
+		pagination:true,
+		toolbar:[{
+			iconCls:'icon-add',
+			text:'增加',
+			handler:function(){
+				$("#editWindow").window('open');
+			}
+		}]
+	});
+});
+$("#btnSearch").bind('click',function(){
+	//form的数据转json对象
+	var formdata=$("#searchForm").serializeJSON();
+	//json对象转json字符串
+	$("#grid").datagrid('load',formdata);
+})
+function test(){
+	var data=$("#grid").datagrid("getData");
+	alert(JSON.stringify(data));
+}
+//保存
+$("#btnSave").bind('click',function(){
+	//表单editForm的数据转json对象
+	var formdata=$("#editForm").serializeJSON();
+	$.ajax({
+		url:'dep_add.action',
+		data:formdata,
+		dataType:'json',
+		type:'post',
+		success:function(value){
+			if(value.success){
+				$('#editWindow').window('close');
+				$('#grid').datagrid('reload');
+			}
+			$.messager.alert('提示',value.message);
+		}
+	})
+})
+</script>
+</html>
