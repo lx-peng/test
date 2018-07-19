@@ -70,4 +70,16 @@ public class DepDao extends HibernateDaoSupport implements IDepDao {
 	public void add(Dep dep){
 		getHibernateTemplate().save(dep);
 	}
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		getHibernateTemplate().delete(getHibernateTemplate().get(Dep.class, id));
+	}
+	public Dep get(Long id) {
+		// TODO Auto-generated method stub
+		return getHibernateTemplate().get(Dep.class, id);
+	}
+	public void update(Dep dep) {
+		// TODO Auto-generated method stub
+		getHibernateTemplate().update(dep);
+	}
 }

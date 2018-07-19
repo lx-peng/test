@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts2.ServletActionContext;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 import cn.itcast.erp.biz.IDepBiz;
 import cn.itcast.erp.entity.Dep;
@@ -20,7 +21,16 @@ public class DepAction {
 	private int page;//当前页码
 	private int rows;//每页个数
 	private Dep dep;
+	private Long id;
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public void setDep(Dep dep) {
 		this.dep = dep;
 	}
@@ -122,5 +132,44 @@ public class DepAction {
 		map.put("success", success);
 		map.put("message", message);
 		return JSON.toJSONString(map);
+	}
+	public void delete(){
+		try {
+			depBiz.delete(id);
+			write(ajaxReturn(true,"删除成功"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			write(ajaxReturn(false,"发生异常"));
+		}
+	}
+	public void get(){
+		Dep dep=depBiz.get(id);
+		String jsonString=JSON.toJSONString(dep);
+		write(mapJson(jsonString,"dep"));
+	}
+	/**
+	 * 加前缀
+	 */
+	public String mapJson(String jsonString,String prefix){
+		Map<String,Object> map = JSON.parseObject(jsonString);
+		Map<String,Object> newMap=new HashMap<String,Object>();
+		for (String key : map.keySet()) {
+			newMap.put(prefix+"."+key, map.get(key));
+		}
+		return JSON.toJSONString(newMap);
+	}
+	/**
+	 * 更新
+	 */
+	public void update(){
+		try {
+			depBiz.update(dep);
+			write(ajaxReturn(true,"修改成功"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			write(ajaxReturn(false,"发生异常"));
+		}
 	}
 }

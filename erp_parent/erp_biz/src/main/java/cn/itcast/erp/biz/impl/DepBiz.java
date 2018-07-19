@@ -31,4 +31,16 @@ public class DepBiz implements IDepBiz {
 		// TODO Auto-generated method stub
 		depDao.add(dep);
 	}
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		depDao.delete(id);
+	}
+	public Dep get(Long id) {
+		// TODO Auto-generated method stub
+		return depDao.get(id);
+	}
+	public void update(Dep dep) {
+		// TODO Auto-generated method stub
+		depDao.update(dep);
+	}
 }

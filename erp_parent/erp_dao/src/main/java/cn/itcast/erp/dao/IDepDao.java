@@ -15,4 +15,7 @@ public interface IDepDao {
 	public List<Dep> getList(Dep dep, Dep dep2, Object object,int firstResult,int maxResult);
 	public long getCount(Dep dep, Dep dep2, Object object);
 	public void add(Dep dep);
+	public void delete(Long id);
+	public Dep get(Long id);
+	public void update(Dep dep);
 }

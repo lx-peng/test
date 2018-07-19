@@ -22,4 +22,16 @@ public interface IDepBiz {
 	 * 增加部门
 	 */
 	public void add(Dep dep);
+	/**
+	 * 删除部门
+	 */
+	public void delete(Long id);
+	/**
+	 * 查询实体
+	 */
+	public Dep get(Long id);
+	/**
+	 * 更新
+	 */
+	public void update(Dep dep);
 }
