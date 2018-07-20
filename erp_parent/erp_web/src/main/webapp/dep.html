@@ -14,102 +14,37 @@
 <div id="editWindow" class="easyui-window" title="部门编辑"
 style="width:300px;height:200px" data-options="closed:true">
 <form id="editForm">
-<input hidden="hidden" name="dep.uuid" id="dep.uuid">
+<input hidden="hidden" name="t.uuid" id="t.uuid">
 <table>
 	<tr>
-		<td>名称</td><td><input name="dep.name"></td>
+		<td>名称</td><td><input name="t.name"></td>
 	</tr>
 	<tr>
-		<td>电话</td><td><input name="dep.tele"></td>
+		<td>电话</td><td><input name="t.tele"></td>
 	</tr>
 </table>
 <button type="button" id="btnSave">保存</button>
 </form>
 </div>
 <form id="searchForm">
-部门名称：<input name="dep1.name">
-部门电话：<input name="dep1.tele">
+部门名称：<input name="t.name">
+部门电话：<input name="t.tele">
 <button id="btnSearch" type="button">查询</button>
 </form>
 <table id="grid"></table>
 </body>
+<script type="text/javascript" src="js/crud.js"></script>
 <script type="text/javascript">
-var method="";
-$(function(){
-	$("#grid").datagrid({
-		url:'dep_listByPage.action',
-		columns:[[
+var name="dep";
+var columns=[[
 			{field:'uuid',title:"部门编号",width:100},  
 			{field:'name',title:"部门名称",width:100},
 			{field:'tele',title:"部门电话",width:100},
 			{field:'-',title:"操作",width:100,formatter:function(value,row,index){
-				return "<a href='#' onclick='edit("+ row.uuid +")'>修改</a><a href='#' onclick='dele("+ row.uuid +")'>删除</a>";
+				var oper= "<a href='#' onclick='edit("+ row.uuid +")'>修改</a>";
+				oper+="<a href='#' onclick='dele("+ row.uuid +")'>删除</a>";
+				return oper;
 			}},
-		]],
-		singleSelect:true,
-		pagination:true,
-		toolbar:[{
-			iconCls:'icon-add',
-			text:'增加',
-			handler:function(){
-				method="add";
-				$("#editForm").form('clear');
-				$("#editWindow").window('open');
-			}
-		}]
-	});
-});
-$("#btnSearch").bind('click',function(){
-	//form的数据转json对象
-	var formdata=$("#searchForm").serializeJSON();
-	//json对象转json字符串
-	$("#grid").datagrid('load',formdata);
-})
-function test(){
-	var data=$("#grid").datagrid("getData");
-	alert(JSON.stringify(data));
-}
-//保存
-$("#btnSave").bind('click',function(){
-	//表单editForm的数据转json对象
-	var formdata=$("#editForm").serializeJSON();
-	$.ajax({
-		url:'dep_'+method+'.action',
-		data:formdata,
-		dataType:'json',
-		type:'post',
-		success:function(value){
-			if(value.success){
-				$('#editWindow').window('close');
-				$('#grid').datagrid('reload');
-			}
-			$.messager.alert('提示',value.message);
-		}
-	})
-})
-//删除
-function dele(id){
-	$.messager.confirm("提示","确定要删除吗",function(value){
-		$.ajax({
-			url:'dep_delete.action?id='+id,
-			dataType:'json',
-			type:'post',
-			success:function(value){
-				$.messager.alert('提示',value.message);
-				if(value.success){
-					$('#grid').datagrid('reload');
-				}
-			}
-		})
-	})
-	
-}
-//修改
-function edit(id){
-	$('#editWindow').window('open');
-	$('#editForm').form('clear');
-	$('#editForm').form('load','dep_get.action?id='+id);
-	method="update";
-}
+		]];
 </script>
 </html>

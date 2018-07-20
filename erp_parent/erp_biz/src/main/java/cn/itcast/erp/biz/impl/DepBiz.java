@@ -10,37 +10,16 @@ import cn.itcast.erp.entity.Dep;
  * @author Administrator
  *
  */
-public class DepBiz implements IDepBiz {
+public class DepBiz extends BaseBiz<Dep> implements IDepBiz {
 	private IDepDao depDao;
-	public void setDepDao(IDepDao depDao){
-		this.depDao=depDao;
+
+	public IDepDao getDepDao() {
+		return depDao;
 	}
-	public List<Dep> getList(Dep dep1,Dep dep2,Object object) {
-		// TODO Auto-generated method stub
-		return depDao.getList(dep1,dep2,object);
+
+	public void setDepDao(IDepDao depDao) {
+		this.depDao = depDao;
+		super.setBaseDao(this.depDao);
 	}
-	public List<Dep> getList(Dep dep1,Dep dep2,Object object,int firstResult,int maxResult) {
-		// TODO Auto-generated method stub
-		return depDao.getList(dep1,dep2,object,firstResult,maxResult);
-	}
-	public long getCount(Dep dep1,Dep dep2,Object object) {
-		// TODO Auto-generated method stub
-		return depDao.getCount(dep1,dep2,object);
-	}
-	public void add(Dep dep) {
-		// TODO Auto-generated method stub
-		depDao.add(dep);
-	}
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		depDao.delete(id);
-	}
-	public Dep get(Long id) {
-		// TODO Auto-generated method stub
-		return depDao.get(id);
-	}
-	public void update(Dep dep) {
-		// TODO Auto-generated method stub
-		depDao.update(dep);
-	}
+	
 }

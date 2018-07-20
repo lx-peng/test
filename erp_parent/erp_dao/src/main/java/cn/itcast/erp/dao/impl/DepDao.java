@@ -15,47 +15,13 @@ import cn.itcast.erp.entity.Dep;
  * @author Administrator
  *
  */
-public class DepDao extends HibernateDaoSupport implements IDepDao {
+public class DepDao extends BaseDao<Dep> implements IDepDao {
 
-	/**
-	 * 查询全部列表
-	 */
-	public List<Dep> getList() {
-		// TODO Auto-generated method stub
-		return (List<Dep>)getHibernateTemplate().find("from Dep");
-	}
-	/**
-	 * 查询全部列表
-	 */
-	public List<Dep> getList(Dep dep1,Dep dep2,Object object) {
-		// TODO Auto-generated method stub
-		DetachedCriteria dc=getDetachedCriteria(dep1, dep2, object);
-		return (List<Dep>) this.getHibernateTemplate().findByCriteria(dc);
-	}
-
-	/**
-	 * 查询全部列表
-	 */
-	public List<Dep> getList(Dep dep1,Dep dep2,Object object,int firstResult,int maxResult) {
-		// TODO Auto-generated method stub
-		DetachedCriteria dc=getDetachedCriteria(dep1, dep2, object);
-		return (List<Dep>) this.getHibernateTemplate().findByCriteria(dc,firstResult,maxResult);
-	}
 	
-	/**
-	 * 统计记录个数
-	 */
-	public long getCount(Dep dep1,Dep dep2,Object object) {
-		// TODO Auto-generated method stub
-		DetachedCriteria dc=getDetachedCriteria(dep1, dep2, object);
-		dc.setProjection(Projections.rowCount());
-		List<Long> list= (List<Long>) this.getHibernateTemplate().findByCriteria(dc);
-		return list.get(0);
-	}
 	/**
 	 * 构建查询条件
 	 */
-	private DetachedCriteria getDetachedCriteria(Dep dep1,Dep dep2,Object object){
+	public DetachedCriteria getDetachedCriteria(Dep dep1,Dep dep2,Object object){
 		DetachedCriteria dc=DetachedCriteria.forClass(Dep.class);
 		if(dep1!=null){
 			if(dep1.getName()!=null && dep1.getName().length()>0){
@@ -67,19 +33,5 @@ public class DepDao extends HibernateDaoSupport implements IDepDao {
 		}
 		return dc;
 	}
-	public void add(Dep dep){
-		getHibernateTemplate().save(dep);
-	}
-	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		getHibernateTemplate().delete(getHibernateTemplate().get(Dep.class, id));
-	}
-	public Dep get(Long id) {
-		// TODO Auto-generated method stub
-		return getHibernateTemplate().get(Dep.class, id);
-	}
-	public void update(Dep dep) {
-		// TODO Auto-generated method stub
-		getHibernateTemplate().update(dep);
-	}
+	
 }

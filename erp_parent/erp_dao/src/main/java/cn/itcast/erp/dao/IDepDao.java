@@ -9,13 +9,7 @@ import cn.itcast.erp.entity.Dep;
  * @author Administrator
  *
  */
-public interface IDepDao {
+public interface IDepDao extends IBaseDao<Dep>{
 
-	public List<Dep> getList(Dep dep, Dep dep2, Object object);
-	public List<Dep> getList(Dep dep, Dep dep2, Object object,int firstResult,int maxResult);
-	public long getCount(Dep dep, Dep dep2, Object object);
-	public void add(Dep dep);
-	public void delete(Long id);
-	public Dep get(Long id);
-	public void update(Dep dep);
+	
 }
