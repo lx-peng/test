@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [24/Aug/2018:11:14:58 +0800] "GET /redsun/ws/waybill?wsdl HTTP/1.1" 200 1613 http-bio-9090-exec-1 178
+0:0:0:0:0:0:0:1 - - [24/Aug/2018:11:14:59 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-9090-exec-3 0
+127.0.0.1 - - [24/Aug/2018:11:15:48 +0800] "GET /redsun/ws/waybill?wsdl HTTP/1.1" 200 1613 http-bio-9090-exec-5 7
+127.0.0.1 - - [24/Aug/2018:11:15:48 +0800] "GET /redsun/ws/waybill?wsdl=IWaybillWs.wsdl HTTP/1.1" 200 3282 http-bio-9090-exec-6 12
