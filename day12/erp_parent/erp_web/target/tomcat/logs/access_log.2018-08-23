@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:45:48 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:45:50 +0800] "POST /erp/login_checkUser HTTP/1.1" 200 29 http-bio-8080-exec-3 885
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:45:50 +0800] "GET /erp/login_showName HTTP/1.1" 200 44 http-bio-8080-exec-4 10
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:45:50 +0800] "GET /erp/menu_getMenuTree HTTP/1.1" 200 2157 http-bio-8080-exec-2 157
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:45:57 +0800] "GET /erp/supplier.html?type=1 HTTP/1.1" 304 - http-bio-8080-exec-6 30
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:45:57 +0800] "GET /erp/ui/download.js HTTP/1.1" 304 - http-bio-8080-exec-7 4
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:45:57 +0800] "GET /erp/js/crud.js HTTP/1.1" 304 - http-bio-8080-exec-5 25
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:46:17 +0800] "POST /erp/supplier_listByPage?t1.type=1 HTTP/1.1" 200 534 http-bio-8080-exec-9 19900
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:48:55 +0800] "POST /erp/supplier_doImport HTTP/1.1" 200 50 http-bio-8080-exec-10 130968
+0:0:0:0:0:0:0:1 - - [23/Aug/2018:08:49:03 +0800] "POST /erp/supplier_listByPage?t1.type=1 HTTP/1.1" 200 1029 http-bio-8080-exec-10 88
