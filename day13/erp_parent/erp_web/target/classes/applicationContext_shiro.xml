@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<!-- 安全管理器:核心组件 -->
+		<property name="securityManager" ref="securityManager"/>
+		<!-- 认证相关配置：用户必须登录后才可以访问其他资源，如果没登录，就跳转到登录页面 -->
+		<property name="loginUrl" value="/login.html"/>
+		<!-- 授权相关配置：当用户没有访问了某个没有访问权限的资源时，跳转到此页面 -->
+		<property name="unauthorizedUrl" value="/error.html"/>
+		<!-- 添加各种过滤器 -->
+		<property name="filters">
+			<map>
+				<entry key="perms" value-ref="erpAuthorizationFilter"></entry>
+			</map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+				/error.html = anon
+				/login_*=anon
+				/orders.html=perms["采购订单查询","采购订单审核"]
+				/goodstype.html=perms["商品类型"]
+				/goodstype_*=perms["商品类型"]
+				/goods.html=perms["商品"]
+				/goods_*=perms["商品"]
+				/*.html = authc
+				/*.action = authc
+				/*. = authc
+			</value>
+		</property>
+	</bean>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="erpRealm"></property>
+	</bean>
+	<!-- 自定义realm,实现登录认证与授权 -->
+	<bean id="erpRealm" class="cn.itcast.erp.realm.ErpRealm">
+		<property name="empBiz" ref="empBiz"></property>
+		<property name="menuBiz" ref="menuBiz"></property>
+	</bean>
+	<bean id="erpAuthorizationFilter" class="cn.itcast.erp.ErpAuthorizationFilter"></bean>
+	
+	
+</beans>

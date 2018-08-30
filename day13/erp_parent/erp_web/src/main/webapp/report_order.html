@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>销售统计</title>
+<link rel="stylesheet" type="text/css" href="ui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="ui/themes/icon.css">
+<script type="text/javascript" src="ui/jquery.min.js"></script>
+<script type="text/javascript" src="ui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="ui/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="ui/jquery.serializejson.min.js"></script>
+<script type="text/javascript" src="js/report.js"></script>
+<script type="text/javascript" src="ui/highcharts.js"></script>
+<script type="text/javascript">
+	var name="dep";
+	var columns=[[
+	  		    {field:'uuid',title:'编号',width:100},
+	  		    {field:'name',title:'部门名称',width:100},
+	  		    {field:'tele',title:'联系电话',width:100},
+
+				{field:'-',title:'操作',width:200,formatter: function(value,row,index){
+					var oper = "<a href=\"javascript:void(0)\" onclick=\"edit(" + row.uuid + ')">修改</a>';
+					oper += ' <a href="javascript:void(0)" onclick="del(' + row.uuid + ')">删除</a>';
+					return oper;
+				}}
+				]];
+
+</script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'center',title:'销售统计表'" style="padding:4px;backgroud-color:#eee">
+<form id="searchForm">
+开始日期：<input name="startDate" class="easyui-datebox">
+结束日期：<input name="endDate" class="easyui-datebox">
+</form>
+<div style="height:4px;"></div>
+<table id="grid"></table>
+</div>
+<div data-options="region:'east',title:'统计销售图',split:true" style="width:600px;">
+<div id="piechart"></div></div>
+</body>
+</html>
