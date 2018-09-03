@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:17 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:20 +0800] "POST /erp/login_checkUser HTTP/1.1" 200 29 http-bio-8080-exec-3 1111
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:20 +0800] "GET /erp/login_showName HTTP/1.1" 200 44 http-bio-8080-exec-4 10
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:21 +0800] "GET /erp/menu_getMenuTree HTTP/1.1" 200 2443 http-bio-8080-exec-2 140
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:34 +0800] "GET /erp/emp.html HTTP/1.1" 200 4326 http-bio-8080-exec-6 27
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:34 +0800] "POST /erp/dep_list HTTP/1.1" 200 647 http-bio-8080-exec-7 72
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:34 +0800] "POST /erp/dep_list HTTP/1.1" 200 647 http-bio-8080-exec-5 146
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:34 +0800] "GET /erp/ui/themes/default/images/calendar_arrows.png HTTP/1.1" 200 173 http-bio-8080-exec-9 209
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:34 +0800] "GET /erp/ui/themes/default/images/validatebox_warning.png HTTP/1.1" 200 921 http-bio-8080-exec-8 231
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:34 +0800] "GET /erp/ui/themes/default/images/datebox_arrow.png HTTP/1.1" 200 626 http-bio-8080-exec-10 223
+0:0:0:0:0:0:0:1 - - [31/Aug/2018:08:54:34 +0800] "POST /erp/emp_listByPage HTTP/1.1" 200 1713 http-bio-8080-exec-7 169
